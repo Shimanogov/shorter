@@ -1,4 +1,6 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 from pydantic import BaseModel, Field
 
 
@@ -7,13 +9,14 @@ class InputURL(BaseModel):
 
 
 app = FastAPI(title='Make your URL shorts')
+templates = Jinja2Templates(directory="pages")
 
 
-@app.post("/add_url")
-def add_url_to_database():
-    pass
+@app.get("/", response_class=HTMLResponse)
+async def read_item(request: Request):
+    return templates.TemplateResponse("landing.html", {"request": request})
 
 
-@app.get("/{short-url}")
-def redirect():
-    pass
+@app.post("/", response_class=HTMLResponse)
+async def read_item(request: Request):
+    return templates.TemplateResponse("landing.html", {"request": request})

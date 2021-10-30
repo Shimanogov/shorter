@@ -1,4 +1,4 @@
 # shrt
 Webapp creating short urls.
 
-Created using FastAPI + Redis.
+Created using FastAPI, Jinja2, Redis.
