@@ -13,6 +13,7 @@ app = FastAPI(title='Make your URL shorts')
 def add_url_to_database():
     pass
 
+
 @app.get("/{short-url}")
 def redirect():
     pass

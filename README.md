@@ -1,2 +1,4 @@
-# shorter
- Webapp creating short urls
+# shrt
+Webapp creating short urls.
+
+Created using FastAPI + Redis.
