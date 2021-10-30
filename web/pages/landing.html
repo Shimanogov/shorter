@@ -1,19 +1,27 @@
 <html lang="ru">
-
 <head>
     <style>
         body{
             background: rgb(255,255,255);
             background: linear-gradient(140deg, rgba(255,255,255,1) 0%, rgba(150,255,150,1) 75%, rgba(0,200,35,1) 100%);
         }
+        iframe {
+            overflow: hidden;
+            border: 0;
+        }
     </style>
     <title>Item Details</title>
 </head>
 
 <body>
+    <iframe src="https://ghbtns.com/github-btn.html?user=shimanogov&repo=shorter&type=fork&count=true&size=large"
+            width="170" height="30" title="GitHub"></iframe>
     <form method="post">
-    <input type="url" name="Input URL" value=""/>
-    <input type="submit">
+        <label>
+            Input URL
+            <input type="url" name="Input URL" value=""/>
+        </label>
+        <input type="submit">
     </form>
 </body>
 
