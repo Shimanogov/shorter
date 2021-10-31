@@ -1,8 +1,8 @@
+import coolname
+import redis
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse
 from fastapi.templating import Jinja2Templates
-import redis
-import coolname
 
 app = FastAPI(title='Make your URL shorts')
 templates = Jinja2Templates(directory="pages")
@@ -15,11 +15,11 @@ async def read_item(request: Request):
     return templates.TemplateResponse("landing.html", {"request": request})
 
 
-@app.post("/")
-async def login(input_url: str = Form(...)):
+@app.post("/", response_class=HTMLResponse)
+async def login(request: Request, input_url: str = Form(...)):
     short = coolname.generate_slug(3)
     main_db.set(short, input_url)
-    return {"input_url": input_url, "short": short}
+    return templates.TemplateResponse("landing.html", {"request": request, "short": short})
 
 
 @app.get("/{short}", response_class=RedirectResponse)
