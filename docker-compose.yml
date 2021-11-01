@@ -1,9 +1,12 @@
 version: "3"
 services:
   web:
-    build: .
+    build:
+      context: .
+      args:
+        - DOMAIN='shorter.fit'
     ports:
-      - "8000:8000"
+      - "80:8000"
   redis:
     image: redis
     # TODO: setup redis password
