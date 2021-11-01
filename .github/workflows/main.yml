@@ -15,6 +15,6 @@ jobs:
       name: Docker-Compose Remote Deployment
       with:
         ssh_host: shorter.fit
-        ssh_private_key: ${{ secrets.EXAMPLE_COM_SSH_PRIVATE_KEY }}
-        ssh_user: ${{ secrets.EXAMPLE_COM_SSH_USER }}
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
+        ssh_user: ${{ secrets.SSH_USER }}
         docker_compose_prefix: shorter
