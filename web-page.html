@@ -22,7 +22,7 @@
             height: 20vh;
         }
 
-        main{
+        main {
             text-align: center;
         }
 
@@ -49,17 +49,21 @@
         <label>
             <input name="input_url" type="url"
                    value="Input URL and press enter"
-            width=""/>
+                   width=""/>
         </label>
     </form>
-    {% if short %}
-        Your short link is: shorter.fit/{{short}}
+    {% if human %}
+    🧑 shorter.fit/{{human}}<br>
+    {% endif %}
+    {% if bot %}
+    🤖 shorter.fit/{{bot}}
     {% endif %}
 </main>
 
 <footer>
-    <iframe height=50  width=150
-            src="https://ghbtns.com/github-btn.html?user=shimanogov&repo=shorter&type=star&count=true&size=large" title="GitHub"></iframe>
+    <iframe height=50 src="https://ghbtns.com/github-btn.html?user=shimanogov&repo=shorter&type=star&count=true&size=large"
+            title="GitHub"
+            width=150></iframe>
 </footer>
 </body>
 
