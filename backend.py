@@ -3,7 +3,7 @@ from hashlib import shake_128
 import coolname
 import redis
 from fastapi import FastAPI, Request, Form
-from fastapi.responses import HTMLResponse, RedirectResponse
+from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 
 app = FastAPI(title='Make your URL shorts')
@@ -34,6 +34,11 @@ async def login(request: Request, input_url: str = Form(...)):
     # TODO: pass name for webpage from docker compose
     # TODO: expiration time
     # TODO: check for collisions
+
+
+@app.get('/favicon.ico', response_class=FileResponse)
+async def favicon():
+    return 'favicon.ico'
 
 
 @app.get("/{short}", response_class=RedirectResponse)

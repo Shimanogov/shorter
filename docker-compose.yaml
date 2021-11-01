@@ -10,3 +10,4 @@ services:
   redis:
     image: redis
     # TODO: setup redis password
+    # TODO: save db on server not in container

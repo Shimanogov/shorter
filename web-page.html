@@ -4,58 +4,72 @@
         body {
             background: rgb(255, 255, 255);
             background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgb(120, 224, 200) 80%, rgb(118, 225, 200) 100%);
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        header {
+            margin-top: 3vh;
+            text-align: center;
+            font-size: 4vw;
+            height: 20vh;
+            letter-spacing: 0.35vw;
+        }
+
+        main {
+            margin-top: 8vh;
+            text-align: center;
+            font-size: 3vw;
+        }
+
+        footer {
+            text-align: right;
+            position: fixed;
+            height: fit-content;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin-bottom: 2vh;
+            margin-right: 2vw;
         }
 
         button.link {
             background:none;
             border:none;
             font-size: 3vw;
+            font-family: 'Quicksand', sans-serif;
         }
 
         button.link:active {
-          box-shadow: 0 5px #666;
+          text-decoration: underline;
           transform: translateY(4px);
         }
 
         input {
             width: 90vw;
-            height: 7vw;
-            font-size: 2.5vw;
-        }
-
-        iframe {
+            height: 15vh;
+            font-size: 3vw;
+            font-family: 'Quicksand', sans-serif;
+            margin-bottom: 3vh;
+            text-overflow: ellipsis;
             overflow: hidden;
+            background: transparent;
             border: 0;
+            border-bottom: 0.7vh solid black;
         }
 
-        header {
-            text-align: center;
-            font-size: 4vw;
-            height: 20vh;
-        }
-
-        main {
-            text-align: center;
-            font-size: 2.5vw;
-        }
-
-        footer {
-            text-align: right;
-            position: fixed;
-            height: 40px;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            margin-bottom: 0;
-        }
     </style>
-    <title> Item Details</title>
+    <title> shorter - makes URL short</title>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
 
 <body>
 <header>
     shorter.fit<br>
-    makes url shorter still human-readable
+    makes url short still readable
 </header>
 
 <main>
@@ -64,6 +78,7 @@
             <input name="input_url" type="url"
                    value="Input URL and press enter"
                    onfocus="this.value=''"
+                   autocomplete="off"
                    width=""/>
         </label>
     </form>
@@ -86,9 +101,10 @@
 </main>
 
 <footer>
-    <iframe height=50 src="https://ghbtns.com/github-btn.html?user=shimanogov&repo=shorter&type=star&count=true&size=large"
-            title="GitHub"
-            width=150></iframe>
+    <a class="github-button" href="https://github.com/Shimanogov/shorter" data-icon=""
+       data-size="large" data-show-count="False"
+       aria-label="Star Shimanogov/shorter on GitHub">Created in 2021 by Shimanogov Igor. See more on GitHub.
+    </a>
 </footer>
 </body>
 
