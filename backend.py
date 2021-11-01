@@ -23,7 +23,7 @@ async def login(request: Request, input_url: str = Form(...)):
     values = main_db.hgetall(input_url)
     if values == {}:
         values = {
-            'human': coolname.generate_slug(3),
+            'human': coolname.generate_slug(2),
             'bot': shake_128(input_url.encode('utf-8')).hexdigest(3),
         }
         main_db.hmset(input_url, values)
