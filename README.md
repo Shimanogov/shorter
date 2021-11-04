@@ -25,6 +25,14 @@ Website saves urls for two weeks since last usage of shorted link.
 - Dockerfile contains docker with back/api
 - docker-compose.yaml runs dockerfile and redis db container
 
+### db
+
+Database consists of two redis db instances. Two instances path were chosen for speed of requests handling.
+
 ## self-deployment instructions
 
-To be done...
+Currently, github action alex-ac/github-action-ssh-docker-compose is used to
+deploy on each release. Server also uses nginx to establish ssl-secure connection.
+Nginx runs in non-container mode because of safe containing of ssl-key.
+To deploy this yourself, clone, setup nginx on your server and setup all github secrets
+mentioned in worklows/main.yml e.g. ssh key and user.
