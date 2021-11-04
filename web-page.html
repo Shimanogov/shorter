@@ -33,15 +33,15 @@
         }
 
         button.link {
-            background:none;
-            border:none;
+            background: none;
+            border: none;
             font-size: 3vw;
             font-family: 'Quicksand', sans-serif;
         }
 
         button.link:active {
-          text-decoration: underline;
-          transform: translateY(4px);
+            text-decoration: underline;
+            transform: translateY(4px);
         }
 
         input {
@@ -61,8 +61,8 @@
     <title> shorter - makes URL short</title>
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
 </head>
 
@@ -75,10 +75,10 @@
 <main>
     <form method="post">
         <label>
-            <input name="input_url" type="url"
-                   value="Input URL and press enter"
+            <input autocomplete="off" name="input_url"
                    onfocus="this.value=''"
-                   autocomplete="off"
+                   type="url"
+                   value="Input URL and press enter"
                    width=""/>
         </label>
     </form>
@@ -86,24 +86,24 @@
     Click to copy! <br>
     {% endif %}
     {% if human %}
-    <button class="link" value="http://shorter.fit/{{human}}"
-            onclick="navigator.clipboard.writeText(this.value)">
+    <button class="link" onclick="navigator.clipboard.writeText(this.value)"
+            value="http://shorter.fit/{{human}}">
         🧑 shorter.fit/{{human}}
     </button>
     <br>
     {% endif %}
     {% if bot %}
-    <button class="link" value="http://shorter.fit/{{bot}}"
-            onclick="navigator.clipboard.writeText(this.value)">
+    <button class="link" onclick="navigator.clipboard.writeText(this.value)"
+            value="http://shorter.fit/{{bot}}">
         🤖 shorter.fit/{{bot}}
     </button>
     {% endif %}
 </main>
 
 <footer>
-    <a class="github-button" href="https://github.com/Shimanogov/shorter" data-icon=""
-       data-size="large" data-show-count="False"
-       aria-label="Star Shimanogov/shorter on GitHub">Created in 2021 by Shimanogov Igor. See more on GitHub.
+    <a aria-label="Star Shimanogov/shorter on GitHub" class="github-button" data-icon=""
+       data-show-count="False" data-size="large"
+       href="https://github.com/Shimanogov/shorter">Created in 2021 by Shimanogov Igor. See more on GitHub.
     </a>
 </footer>
 </body>

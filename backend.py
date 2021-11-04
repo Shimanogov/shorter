@@ -29,7 +29,7 @@ async def login(request: Request, input_url: str = Form(...)):
         }
 
         while redirection_db.get(values['bot']):  # check for collisions
-            values['bot'] = shake_128((input_url+values['bot']).encode('utf-8')).hexdigest(3)
+            values['bot'] = shake_128((input_url + values['bot']).encode('utf-8')).hexdigest(3)
 
         while redirection_db.get(values['human']):  # check for collisions
             values['human'] = coolname.generate_slug(2)
@@ -44,7 +44,6 @@ async def login(request: Request, input_url: str = Form(...)):
     return templates.TemplateResponse("web-page.html", {'request': request,
                                                         'human': values['human'],
                                                         'bot': values['bot'], })
-    # TODO: pass name for webpage from docker compose
 
 
 @app.get('/favicon.ico', response_class=FileResponse)
@@ -65,5 +64,4 @@ async def read_item(request: Request, short: str):
 
         return RedirectResponse(long)
     else:
-        return templates.TemplateResponse('oops.html', {'request': request})
-    # TODO: make also work as shorter
+        return HTMLResponse(templates.TemplateResponse('oops.html', {'request': request}))

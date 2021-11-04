@@ -10,5 +10,11 @@ services:
       - "80:8000"
   redis:
     image: redis
+
+    # TODO: setup SSL and https
+    # TODO: pass name for webpage from docker compose
     # TODO: setup redis password
-    # TODO: save db on server not in container
+    # TODO: save db on server not in container periodically
+
+    # TODO: (big) qr generation
+    # TODO: make also work from adding a prefix
