@@ -52,16 +52,18 @@ async def favicon():
     return 'favicon.ico'
 
 
-@app.get("/{short}", response_class=RedirectResponse)
-async def read_item(short: str):
+@app.get("/{short}")
+async def read_item(request: Request, short: str):
     long = redirection_db.get(short)
 
-    # now lets set up expirations:
-    values = main_db.hgetall(long)
-    main_db.expire(long, 60 * 60 * 24 * 7 * 2)
-    redirection_db.expire(values['bot'], 60 * 60 * 24 * 7 * 2)
-    redirection_db.expire(values['human'], 60 * 60 * 24 * 7 * 2)
+    if long:
+        # now lets set up expirations:
+        values = main_db.hgetall(long)
+        main_db.expire(long, 60 * 60 * 24 * 7 * 2)
+        redirection_db.expire(values['bot'], 60 * 60 * 24 * 7 * 2)
+        redirection_db.expire(values['human'], 60 * 60 * 24 * 7 * 2)
 
-    return long
-    # TODO: create oops fallback
+        return RedirectResponse(long)
+    else:
+        return templates.TemplateResponse('oops.html', {'request': request})
     # TODO: make also work as shorter
