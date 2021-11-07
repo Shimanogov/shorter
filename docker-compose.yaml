@@ -4,16 +4,12 @@ services:
   web:
     build:
       context: .
-      args:
-        - DOMAIN='shorter.fit'
     ports:
       - "8000:8000"
   redis:
     image: redis
 
     # TODO: pass name for webpage from docker compose
-    # TODO: setup redis password
 
     # TODO: (big) qr generation
-    # TODO: make also work from adding a prefix
-    # TODO: save db on server not in container periodically
+    # TODO: (big) make also work from adding a prefix

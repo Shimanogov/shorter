@@ -68,7 +68,7 @@
 
 <body>
 <header>
-    shorter.fit<br>
+    {{domain}}<br>
     makes url short still readable
 </header>
 
@@ -87,15 +87,15 @@
     {% endif %}
     {% if human %}
     <button class="link" onclick="navigator.clipboard.writeText(this.value)"
-            value="http://shorter.fit/{{human}}">
-        🧑 shorter.fit/{{human}}
+            value="https://{{domain}}/{{human}}">
+        🧑 {{domain}}/{{human}}
     </button>
     <br>
     {% endif %}
     {% if bot %}
     <button class="link" onclick="navigator.clipboard.writeText(this.value)"
-            value="http://shorter.fit/{{bot}}">
-        🤖 shorter.fit/{{bot}}
+            value="https://{{domain}}/{{bot}}">
+        🤖 {{domain}}/{{bot}}
     </button>
     {% endif %}
 </main>
