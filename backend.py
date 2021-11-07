@@ -90,5 +90,5 @@ async def read_item(request: Request, short: str):
 
         return RedirectResponse(long)
     else:
-        return HTMLResponse(templates.TemplateResponse('oops.html', {'request': request,
-                                                                     'domain': domain}))
+        return templates.TemplateResponse('oops.html', {'request': request,
+                                                        'domain': domain})
