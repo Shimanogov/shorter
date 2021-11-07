@@ -9,7 +9,6 @@ services:
   redis:
     image: redis
 
-    # TODO: pass name for webpage from docker compose
-
     # TODO: (big) qr generation
-    # TODO: (big) make also work from adding a prefix
+    # TODO: (big) make also work from URL line of browser
+    # TODO: (big) generate favicon and css config from config.yaml
