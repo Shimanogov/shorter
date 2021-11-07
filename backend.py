@@ -10,6 +10,8 @@ import yaml
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.templating import Jinja2Templates
+from qrcode.image.styledpil import StyledPilImage
+from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
 
 with open('config.yaml', 'r') as stream:
     config = yaml.safe_load(stream)
@@ -70,8 +72,11 @@ async def login(request: Request, input_url: str = Form(...)):
     redirection_db.expire(values['human'], expiration_time)
 
     # now make qr
-
-    img = qrcode.make('https://' + domain + '/' + values['bot'])
+    img = qrcode.QRCode(error_correction=qrcode.constants.ERROR_CORRECT_H)
+    img.add_data('https://' + domain + '/' + values['bot'])
+    img = img.make_image(image_factory=StyledPilImage,
+                         module_drawer=RoundedModuleDrawer(),
+                         embeded_image_path="/favicon.ico")
     buffered = BytesIO()
     img.save(buffered, format="PNG")
     qr = str(base64.b64encode(buffered.getvalue()))[2:-1]

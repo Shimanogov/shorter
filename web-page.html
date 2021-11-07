@@ -20,30 +20,30 @@
         <label>
             <input autocomplete="off" name="input_url"
                    onfocus="this.value=''"
-                   type="url"
                    required="required"
+                   type="url"
                    value="Input URL and press enter"
                    width=""/>
         </label>
     </form>
-    {% if human or bot %}
-    Click to copy! <br>
-    {% endif %}
-    {% if human %}
-    <button class="link" onclick="navigator.clipboard.writeText(this.value)"
-            value="https://{{domain}}/{{human}}">
-        🧑 {{domain}}/{{human}}
-    </button>
+    {% if human and bot and qr %}
+    <div class="row">
+        <div class="column left">
+            <img alt="QR code" src="data: image/png;base64,{{qr}}">
+        </div>
+        <div class="column right">
+            Click to copy! <br>
+            <button class="link" onclick="navigator.clipboard.writeText(this.value)"
+                    value="https://{{domain}}/{{human}}">
+                🧑 {{domain}}/{{human}}
+            </button>
+            <button class="link" onclick="navigator.clipboard.writeText(this.value)"
+                    value="https://{{domain}}/{{bot}}">
+                🤖 {{domain}}/{{bot}}
+            </button>
+        </div>
+    </div>
     <br>
-    {% endif %}
-    {% if bot %}
-    <button class="link" onclick="navigator.clipboard.writeText(this.value)"
-            value="https://{{domain}}/{{bot}}">
-        🤖 {{domain}}/{{bot}}
-    </button>
-    {% endif %}
-    {% if qr%}
-    <img alt="QR code" src="data: image/png;base64,{{qr}}">
     {% endif %}
 </main>
 

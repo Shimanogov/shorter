@@ -69,3 +69,23 @@ a:hover {
 a:active {
     color: black;
 }
+
+.row {
+    display: flex;
+}
+
+.column {
+}
+
+.left {
+    width: 30%;
+}
+
+.right {
+    width: 70%;
+}
+
+img {
+    height: 35vh;
+    object-fit: scale-down;
+}
