@@ -1,9 +1,12 @@
+import base64
+import re
 from hashlib import shake_128
+from io import BytesIO
 
 import coolname
+import qrcode
 import redis
 import yaml
-import re
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.templating import Jinja2Templates
@@ -66,15 +69,28 @@ async def login(request: Request, input_url: str = Form(...)):
     redirection_db.expire(values['bot'], expiration_time)
     redirection_db.expire(values['human'], expiration_time)
 
+    # now make qr
+
+    img = qrcode.make('https://' + domain + '/' + values['bot'])
+    buffered = BytesIO()
+    img.save(buffered, format="PNG")
+    qr = str(base64.b64encode(buffered.getvalue()))[2:-1]
+
     return templates.TemplateResponse("web-page.html", {'request': request,
                                                         'human': values['human'],
                                                         'bot': values['bot'],
-                                                        'domain': domain})
+                                                        'domain': domain,
+                                                        'qr': qr})
 
 
 @app.get('/favicon.ico', response_class=FileResponse)
 async def favicon():
     return 'favicon.ico'
+
+
+@app.get('/style.css', response_class=FileResponse)
+async def favicon():
+    return 'style.css'
 
 
 @app.get("/{short}")

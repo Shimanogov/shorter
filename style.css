@@ -53,3 +53,19 @@ input {
     border: 0;
     border-bottom: 0.7vh solid black;
 }
+
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
