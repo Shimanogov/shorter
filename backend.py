@@ -11,6 +11,7 @@ from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from qrcode.image.styledpil import StyledPilImage
+from qrcode.image.styles.colormasks import SolidFillColorMask
 from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
 
 with open('config.yaml', 'r') as stream:
@@ -30,13 +31,13 @@ redirection_db = redis.StrictRedis(host='redis', decode_responses=True, db=1)
 
 
 @app.get("/", response_class=HTMLResponse)
-async def read_item(request: Request):
+async def base_render(request: Request):
     return templates.TemplateResponse("web-page.html", {"request": request,
                                                         'domain': domain})
 
 
 @app.post("/", response_class=HTMLResponse)
-async def login(request: Request, input_url: str = Form(...)):
+async def result_render(request: Request, input_url: str = Form(...)):
     # check if user tries to shorten our link
     regexp = r'^https?:\/\/' + domain.replace(r'.', r'\.')
     if re.match(regexp, input_url):
@@ -76,7 +77,8 @@ async def login(request: Request, input_url: str = Form(...)):
     img.add_data('https://' + domain + '/' + values['bot'])
     img = img.make_image(image_factory=StyledPilImage,
                          module_drawer=RoundedModuleDrawer(),
-                         embeded_image_path="/favicon.ico")
+                         embeded_image_path="/favicon.ico",
+                         color_mask=SolidFillColorMask(back_color=(255, 255, 255)))
     buffered = BytesIO()
     img.save(buffered, format="PNG")
     qr = str(base64.b64encode(buffered.getvalue()))[2:-1]
@@ -94,12 +96,12 @@ async def favicon():
 
 
 @app.get('/style.css', response_class=FileResponse)
-async def favicon():
+async def css():
     return 'style.css'
 
 
 @app.get("/{short}")
-async def read_item(request: Request, short: str):
+async def redirect(request: Request, short: str):
     long = redirection_db.get(short)
 
     if long:

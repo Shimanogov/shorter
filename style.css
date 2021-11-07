@@ -54,6 +54,10 @@ input {
     border-bottom: 0.7vh solid black;
 }
 
+a {
+    text-decoration: none;
+}
+
 a:link {
     color: black;
 }
@@ -75,14 +79,10 @@ a:active {
 }
 
 .column {
-}
-
-.left {
-    width: 30%;
-}
-
-.right {
-    width: 70%;
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 img {

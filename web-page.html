@@ -1,6 +1,6 @@
 <html lang="ru">
 <head>
-    <title> shorter - makes URL short</title>
+    <title> {{domain}} - makes URL short</title>
     <link href=style.css rel="stylesheet">
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -28,18 +28,22 @@
     </form>
     {% if human and bot and qr %}
     <div class="row">
-        <div class="column left">
+        <div class="column">
             <img alt="QR code" src="data: image/png;base64,{{qr}}">
         </div>
-        <div class="column right">
-            Click to copy! <br>
+        <div class="column">
+            Click on links<br>to copy!
+        </div>
+        <div class="column">
             <button class="link" onclick="navigator.clipboard.writeText(this.value)"
                     value="https://{{domain}}/{{human}}">
-                🧑 {{domain}}/{{human}}
+                🧑 {{domain}}/<br>{{human}}
             </button>
+        </div>
+        <div class="column">
             <button class="link" onclick="navigator.clipboard.writeText(this.value)"
                     value="https://{{domain}}/{{bot}}">
-                🤖 {{domain}}/{{bot}}
+                🤖 {{domain}}/<br>{{bot}}
             </button>
         </div>
     </div>
