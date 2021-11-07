@@ -31,8 +31,7 @@ Database consists of two redis db instances. Two instances path were chosen for 
 
 ## self-deployment instructions
 
-Currently, github action alex-ac/github-action-ssh-docker-compose is used to
-deploy on each release. Server also uses nginx to establish ssl-secure connection.
-Nginx runs in non-container mode because of safe containing of ssl-key.
-To deploy this yourself, clone, setup nginx on your server and setup all github secrets
-mentioned in worklows/main.yml e.g. ssh key and user.
+Currently, github action alex-ac/github-action-ssh-docker-compose is used to deploy on each release. Server also uses
+nginx to establish ssl-secure connection. Nginx runs in non-container mode because of safe containing of ssl-key. To
+deploy this yourself, clone, setup nginx on your server and setup all github secrets mentioned in worklows/main.yml e.g.
+ssh key and user.

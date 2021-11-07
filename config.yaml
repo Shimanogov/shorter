@@ -1,0 +1,5 @@
+expiration_time: 1209600
+bot_length: 3
+human_length: 2
+collision_fix_times: 10
+domain: 'shorter.fit'

@@ -2,16 +2,20 @@ from hashlib import shake_128
 
 import coolname
 import redis
+import yaml
+import re
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 
-# TODO: make separate config file
-expiration_time = 60 * 60 * 24 * 7 * 2
-bot_length = 3
-human_length = 2
-collision_fix_times = 10
-domain = 'shorter.fit'
+with open('config.yaml', 'r') as stream:
+    config = yaml.safe_load(stream)
+
+expiration_time = config['expiration_time']
+bot_length = config['bot_length']
+human_length = config['human_length']
+collision_fix_times = config['collision_fix_times']
+domain = config['domain']
 
 app = FastAPI(title='Make your URL shorts')
 templates = Jinja2Templates(directory=".")
@@ -28,8 +32,15 @@ async def read_item(request: Request):
 
 @app.post("/", response_class=HTMLResponse)
 async def login(request: Request, input_url: str = Form(...)):
+    # check if user tries to shorten our link
+    regexp = r'^https?:\/\/' + domain.replace(r'.', r'\.')
+    if re.match(regexp, input_url):
+        short = input_url.split('/')[-1]
+        input_url = redirection_db.get(short)
+
+    # check if url was already shorted
     values = main_db.hgetall(input_url)
-    if values == {}:  # check if url already shorted
+    if values == {}:
 
         values = {  # generate new values
             'human': coolname.generate_slug(human_length),
