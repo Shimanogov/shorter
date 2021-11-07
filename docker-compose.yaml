@@ -8,7 +8,3 @@ services:
       - "8000:8000"
   redis:
     image: redis
-
-    # TODO: (big) qr generation
-    # TODO: (big) make also work from URL line of browser
-    # TODO: (big) generate favicon and css config from config.yaml
