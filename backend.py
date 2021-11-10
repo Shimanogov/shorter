@@ -8,8 +8,10 @@ import qrcode
 import redis
 import yaml
 from fastapi import FastAPI, Request, Form
+from fastapi.exception_handlers import http_exception_handler
 from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.templating import Jinja2Templates
+from starlette.exceptions import HTTPException as StarletteHTTPException
 from qrcode.image.styledpil import StyledPilImage
 from qrcode.image.styles.colormasks import SolidFillColorMask
 from qrcode.image.styles.moduledrawers import RoundedModuleDrawer
@@ -114,4 +116,14 @@ async def redirect(request: Request, short: str):
         return RedirectResponse(long)
     else:
         return templates.TemplateResponse('oops.html', {'request': request,
-                                                        'domain': domain})
+                                                        'domain': domain}, status_code=404)
+
+
+@app.exception_handler(StarletteHTTPException)
+async def my_custom_exception_handler(request, exc: StarletteHTTPException):
+    if exc.status_code == 404:
+        return templates.TemplateResponse('oops.html', {'request': request,
+                                                        'domain': domain}, status_code=404)
+    else:
+        # Just use FastAPI's built-in handler for other errors
+        return await http_exception_handler(request, exc)
