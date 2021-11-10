@@ -1,12 +1,14 @@
+import re
 from hashlib import shake_128
 
 import coolname
 import redis
 import yaml
-import re
 from fastapi import FastAPI, Request, Form
+from fastapi.exception_handlers import http_exception_handler
 from fastapi.responses import HTMLResponse, RedirectResponse, FileResponse
 from fastapi.templating import Jinja2Templates
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 with open('config.yaml', 'r') as stream:
     config = yaml.safe_load(stream)
@@ -91,4 +93,14 @@ async def read_item(request: Request, short: str):
         return RedirectResponse(long)
     else:
         return templates.TemplateResponse('oops.html', {'request': request,
-                                                        'domain': domain})
+                                                        'domain': domain}, status_code=404)
+
+
+@app.exception_handler(StarletteHTTPException)
+async def my_custom_exception_handler(request, exc: StarletteHTTPException):
+    if exc.status_code == 404:
+        return templates.TemplateResponse('oops.html', {'request': request,
+                                                        'domain': domain}, status_code=404)
+    else:
+        # Just use FastAPI's built-in handler for other errors
+        return await http_exception_handler(request, exc)
