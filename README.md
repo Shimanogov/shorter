@@ -12,18 +12,21 @@ Website saves urls for two weeks since last usage of shorted link.
 
 ### front
 
-- web-page.html renders all responses with help of jinja templates
-- oops.html works as a broken links handler
+- web-page.html
+- oops.html
 - favicon.ico
+- style.css
 
 ### back/api
 
-- backend.py contains fastapi instructions for uvicorn connected with redis client
+- backend.py
+- config.yaml
+- requirements.txt
 
 ### deployment
 
-- Dockerfile contains docker with back/api
-- docker-compose.yaml runs dockerfile and redis db container
+- Dockerfile
+- docker-compose.yaml
 
 ### db
 

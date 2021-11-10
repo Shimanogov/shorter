@@ -1,0 +1,91 @@
+body {
+    background: rgb(255, 255, 255);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 0%, rgb(120, 224, 200) 80%, rgb(118, 225, 200) 100%);
+    font-family: 'Quicksand', sans-serif;
+}
+
+header {
+    margin-top: 3vh;
+    text-align: center;
+    font-size: 4vw;
+    height: 20vh;
+    letter-spacing: 0.35vw;
+}
+
+main {
+    margin-top: 8vh;
+    text-align: center;
+    font-size: 3vw;
+}
+
+footer {
+    text-align: right;
+    position: fixed;
+    height: fit-content;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-bottom: 2vh;
+    margin-right: 2vw;
+}
+
+button.link {
+    background: none;
+    border: none;
+    font-size: 3vw;
+    font-family: 'Quicksand', sans-serif;
+}
+
+button.link:active {
+    text-decoration: underline;
+    transform: translateY(4px);
+}
+
+input {
+    width: 90vw;
+    height: 15vh;
+    font-size: 3vw;
+    font-family: 'Quicksand', sans-serif;
+    margin-bottom: 3vh;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background: transparent;
+    border: 0;
+    border-bottom: 0.7vh solid black;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color: black;
+}
+
+a:visited {
+    color: black;
+}
+
+a:hover {
+    color: black;
+}
+
+a:active {
+    color: black;
+}
+
+.row {
+    display: flex;
+}
+
+.column {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    height: 35vh;
+    object-fit: scale-down;
+}

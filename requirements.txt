@@ -6,3 +6,5 @@ python-multipart>=0.0.5
 redis>=3.5.3
 pyyaml>=6.0
 starlette~=0.16.0
+qrcode>=7.3
+Pillow>=8.4.0
